@@ -45,6 +45,7 @@
 
 
 #include <stdio.h>
+#include <stdbool.h>
 
 /*
 
@@ -74,7 +75,7 @@ board will likely look like this =>
 
 */
 
-int printBoard(int * board[3]) {
+int printBoard(int ** board) {
 	// figure out a way to "referesh" instead of print
 	
 	for (int i = 0; i < 3; i++) {
@@ -100,19 +101,51 @@ int printBoard(int * board[3]) {
 	return 0;
 }
 
+int ** takeTurn(int ** board, int currentPlayer) {
+
+	int row_inp;
+	int col_inp;
+
+	// implement error handling for input
+	scanf("%i", &row_inp);
+	scanf("%i", &col_inp);
+	
+	if (currentPlayer == 1) {
+		board[row_inp-1][col_inp-1] = 1;
+	}
+	else {
+		board[row_inp-1][col_inp-1] = 0;
+	}
+
+	
+	return board;
+}
+
 int main() {
 
 
-	int * board[3]; // why does it have to be * and [3] ? why cant it be [3][3]?
+	int ** board; // why does it have to be * and [3] ? why cant it be [3][3]?
 
 	int row[3] = {0, 0, 0};
 
 	board[0] = row;
 	board[1] = row;
 	board[2] = row;
-	
-	printBoard(board);
 
+	bool halt = false;
+
+
+	while (halt == false) {
+		printBoard(board);
+		board = takeTurn(board, 1);
+
+	}
+
+	// 1. define "consecutive" and then halt game at any 3 consecutive X or Os
+	// 2. indvidually defifne vertical, horizontal and diagnol winning positions
+	
+	
+	
 	return 0;
 
 }
