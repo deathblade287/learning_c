@@ -70,9 +70,42 @@ void takeTurn(int board[3][3], int currentPlayer) {
 	int col_inp;
 
 	// TODO: implement error handling for input
-	printf("Player %i : ", currentPlayer);
-	scanf("%i", &row_inp);
-	scanf("%i", &col_inp);
+	
+	// 1. [x] correct range (only 1, 2 and 3)
+	// 2. no other formats and datatypes
+	// 3. [x] not on the same square if it's already marked
+
+	bool notReplacing = false;
+
+	while (notReplacing == false) {
+
+		bool inRange = false;
+		
+		while (inRange == false) {
+			printf("Player %i (Row) : ", currentPlayer);
+			scanf("%i", &row_inp);
+
+			if (row_inp >= 1 && row_inp <= 3) {
+				inRange = true;
+			}
+		}
+		
+		inRange = false;
+
+		while (inRange == false) {
+			printf("Player %i (Col) : ", currentPlayer);
+			scanf("%i", &col_inp);
+
+			if (col_inp >= 1 && col_inp <= 3) {
+				inRange = true;
+			}
+		}
+
+		if (board[row_inp-1][col_inp-1] == 0) {
+			notReplacing = true;
+		}
+
+	}
 
 	if (currentPlayer == 1) {
 		board[row_inp-1][col_inp-1] = 1;
@@ -126,6 +159,10 @@ int main() {
 
 	}
 
+	printBoard(board);
+
+	printf("\nPlayer %i Wins!\n", currentPlayer);
+	
 	return 0;
 
 }
