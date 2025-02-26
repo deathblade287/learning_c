@@ -117,9 +117,6 @@ void takeTurn(int board[3][3], int currentPlayer) {
 
 int main() {
 
-
-
-
 	int board[3][3] = {0};
 	
 
