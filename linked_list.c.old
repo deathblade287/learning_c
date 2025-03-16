@@ -1,0 +1,117 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// create video explaining this when done
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+typedef struct Node {
+	int data;
+	struct Node * prev;
+	struct Node * next;
+} Node;
+
+void insertAtEnd(Node *LinkedList, int data, Node *prevNode) {
+	Node tmpNode = {data, prevNode, NULL};
+	LinkedList[5] = tmpNode;
+	prevNode->next = &tmpNode;
+}
+
+Node * insertAtStart(Node *LinkedList, int data, Node *prevNode) {
+	Node * newLinkedList = malloc(sizeof(LinkedList) + sizeof(Node));
+	Node tmpNode = {data, NULL, &LinkedList[0]};
+	newLinkedList[0] = tmpNode;
+}
+
+int main() {
+	Node N1 = {1, NULL, NULL};
+	Node N2 = {1, &N1, NULL};
+	N1.next = &N2;
+	Node N3 = {1, &N2, NULL};
+	N2.next = &N3;
+	Node N4 = {1, &N3, NULL};
+	N3.next = &N4;
+	Node N5 = {1, &N4, NULL};
+	N4.next = &N5;
+
+	Node * LinkedList = malloc(5*sizeof(Node));
+
+	LinkedList[0] = N1;
+	LinkedList[1] = N2;
+	LinkedList[2] = N3;
+	LinkedList[3] = N4;
+	LinkedList[4] = N5;
+
+	printf("%i", LinkedList[5].data);
+	insertAtEnd(LinkedList, 27, &N5);
+
+	printf("%i", LinkedList[3].data);
+	printf("%i", LinkedList[4].data);
+	printf("%i", LinkedList[5].data);
+
+	free(LinkedList);
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
